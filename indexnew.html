@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AKM WhatsApp Marketing Studio</title>
+  <meta name="description" content="Ultra-premium AI-powered WhatsApp marketing studio for furniture businesses by AKM Furnitures." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=zodiak@400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem;
+      --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem; --space-20: 5rem;
+      --radius-sm: 0.375rem; --radius-md: 0.75rem; --radius-lg: 1.1rem; --radius-xl: 1.5rem; --radius-full: 9999px;
+      --bg: #f7f2e8; --surface: rgba(255,255,255,0.74); --surface-2: rgba(255,255,255,0.88); --surface-3: rgba(245,236,220,0.92);
+      --border: rgba(94, 69, 16, 0.14); --text: #16120c; --muted: #655a4b; --faint: #9f9485; --inverse: #fff9ef;
+      --gold: #b88728; --gold-2: #d7b363; --gold-soft: rgba(184,135,40,0.12); --accent: #2f2310; --success: #356b4f; --danger: #b44d3a;
+      --shadow-sm: 0 10px 30px rgba(43,30,10,0.08); --shadow-md: 0 24px 80px rgba(43,30,10,0.12); --shadow-lg: 0 36px 120px rgba(43,30,10,0.18);
+      --font-display: 'Zodiak', Georgia, serif; --font-body: 'General Sans', Inter, sans-serif; --transition: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-theme="dark"] {
+      --bg: #090806; --surface: rgba(18,15,11,0.76); --surface-2: rgba(24,19,14,0.92); --surface-3: rgba(34,26,18,0.9);
+      --border: rgba(222, 188, 122, 0.15); --text: #f5ebd8; --muted: #b8a88d; --faint: #7d715e; --inverse: #120f0b;
+      --gold: #c99a3c; --gold-2: #f2d089; --gold-soft: rgba(201,154,60,0.12); --accent: #f4d78c; --success: #64cb8d; --danger: #f08368;
+      --shadow-sm: 0 8px 30px rgba(0,0,0,0.25); --shadow-md: 0 24px 80px rgba(0,0,0,0.35); --shadow-lg: 0 40px 120px rgba(0,0,0,0.45);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    body{
+      min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(201,154,60,.18), transparent 22%),
+        radial-gradient(circle at 88% 14%, rgba(242,208,137,.11), transparent 24%),
+        radial-gradient(circle at 50% 84%, rgba(201,154,60,.10), transparent 28%),
+        linear-gradient(180deg, #080705 0%, #0d0a07 38%, #090806 100%);
+      color:var(--text);overflow-x:hidden
+    }
+    a{text-decoration:none;color:inherit} button,input,select,textarea{font:inherit;color:inherit}
+    img,svg{display:block;max-width:100%} button{cursor:pointer;border:none;background:none}
+    :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:var(--radius-sm)}
+    .skip-link{position:absolute;left:-9999px;top:0}.skip-link:focus{left:var(--space-4);top:var(--space-4);z-index:1000;background:var(--surface-2);padding:var(--space-3) var(--space-4);border-radius:var(--radius-md)}
+
+    .app-shell{display:grid;grid-template-columns: 290px minmax(0,1fr);min-height:100dvh}
+    .sidebar{
+      position:sticky;top:0;height:100dvh;padding:var(--space-6);
+      background:linear-gradient(180deg, rgba(18,15,11,.94), rgba(10,8,6,.82));
+      backdrop-filter: blur(22px);border-right:1px solid var(--border);
+      display:flex;flex-direction:column;gap:var(--space-6)
+    }
+    .brand{display:flex;align-items:center;gap:var(--space-3)}
+    .brand-mark{
+      width:46px;height:46px;border-radius:14px;
+      background:linear-gradient(135deg, rgba(242,208,137,.18), rgba(201,154,60,.08));
+      display:grid;place-items:center;border:1px solid rgba(242,208,137,.24);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 10px 30px rgba(201,154,60,.12)
+    }
+    .brand-mark svg{width:26px;height:26px;color:var(--gold-2)}
+    .brand-copy h1{font-family:var(--font-display);font-size:1.25rem;line-height:1.05;letter-spacing:.02em}
+    .brand-copy p{font-size:var(--text-xs);color:var(--muted);margin-top:var(--space-1)}
+    .pill{
+      display:inline-flex;align-items:center;gap:var(--space-2);
+      padding:.38rem .75rem;border-radius:var(--radius-full);
+      font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;
+      border:1px solid var(--border);color:var(--gold-2);background:rgba(201,154,60,.08)
+    }
+    .nav{display:grid;gap:var(--space-2)}
+    .nav button{
+      display:flex;align-items:center;gap:var(--space-3);
+      padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);
+      color:var(--muted);transition:transform var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
+      border:1px solid transparent;min-height:48px
+    }
+    .nav button:hover,.nav button.active{
+      color:var(--text);background:linear-gradient(180deg, rgba(201,154,60,.13), rgba(201,154,60,.05));
+      border-color:var(--border);transform:translateX(4px)
+    }
+    .nav-dot{width:9px;height:9px;border-radius:50%;background:currentColor;opacity:.65}
+
+    .main{min-width:0;display:flex;flex-direction:column}
+    .topbar{
+      position:sticky;top:0;z-index:40;
+      display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);
+      padding:var(--space-5) var(--space-6);
+      backdrop-filter:blur(18px);
+      background:linear-gradient(180deg, rgba(10,8,6,.82), rgba(10,8,6,.58));
+      border-bottom:1px solid var(--border)
+    }
+    .title-group h2{
+      font-family:var(--font-display);
+      font-size:clamp(1.6rem, 1.1rem + 1vw, 2.4rem);
+      letter-spacing:.02em
+    }
+    .title-group p{color:var(--muted);font-size:var(--text-sm);margin-top:var(--space-1)}
+    .top-actions{display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap}
+    .theme-toggle,.ghost-btn,.primary-btn,.secondary-btn{
+      min-height:46px;padding:0 var(--space-4);border-radius:var(--radius-full);
+      display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);
+      transition:transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition)
+    }
+    .theme-toggle,.ghost-btn,.secondary-btn{border:1px solid var(--border);background:rgba(255,255,255,.03)}
+    .theme-toggle:hover,.ghost-btn:hover,.secondary-btn:hover{
+      transform:translateY(-2px);box-shadow:var(--shadow-sm);background:rgba(201,154,60,.08)
+    }
+    .primary-btn{
+      background:linear-gradient(135deg, var(--gold), var(--gold-2));
+      color:#17120b;font-weight:700;box-shadow:0 18px 40px rgba(201,154,60,.28)
+    }
+    .primary-btn:hover{
+      transform:translateY(-2px) scale(1.01);box-shadow:0 26px 60px rgba(201,154,60,.34)
+    }
+
+    /* HERO — single, wide, floating */
+    .hero{
+      position:relative;
+      padding:var(--space-10) var(--space-8) var(--space-6);
+      display:block
+    }
+    .hero-panel,.panel,.preview-shell{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid var(--border);box-shadow:var(--shadow-md);backdrop-filter:blur(18px)
+    }
+    .hero-panel{
+      padding:var(--space-8);
+      border-radius:calc(var(--radius-xl) + 6px);
+      overflow:hidden;isolation:isolate;
+      max-width:900px;
+      margin:0 auto;
+      animation:floatCard 10s ease-in-out infinite;
+      transform:translateY(6px)
+    }
+    .hero-panel::before{
+      content:"";position:absolute;inset:auto auto -10% -10%;
+      width:60%;height:60%;
+      background:radial-gradient(circle, rgba(242,208,137,.16), transparent 70%);
+      filter:blur(26px);pointer-events:none
+    }
+    @keyframes floatCard {
+      0%,100%{transform:translateY(6px)}
+      50%{transform:translateY(-6px)}
+    }
+
+    .eyebrow{
+      font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.18em;
+      color:var(--gold-2);margin-bottom:var(--space-4)
+    }
+    .hero-panel h3{
+      font-family:var(--font-display);
+      font-size:clamp(2.3rem, 1.7rem + 2vw, 4.2rem);
+      line-height:0.98;max-width:16ch
+    }
+    .hero-panel p{margin-top:var(--space-4);color:var(--muted);max-width:62ch}
+    .hero-grid{
+      margin-top:var(--space-6);
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4)
+    }
+    .mini-stat{
+      padding:var(--space-4);border-radius:var(--radius-lg);
+      background:rgba(255,255,255,.03);border:1px solid rgba(242,208,137,.08)
+    }
+    .mini-stat strong{display:block;font-size:1.35rem;font-family:var(--font-display);color:var(--gold-2)}
+    .mini-stat span{font-size:var(--text-xs);color:var(--muted)}
+
+    .workspace{
+      padding:var(--space-4) var(--space-6) var(--space-8);
+      display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);
+      gap:var(--space-6);align-items:start
+    }
+    .panel{padding:var(--space-6);border-radius:calc(var(--radius-xl) + 2px)}
+    .panel + .panel{margin-top:var(--space-6)}
+    .section-heading{
+      display:flex;justify-content:space-between;align-items:flex-start;
+      gap:var(--space-4);margin-bottom:var(--space-5)
+    }
+    .section-heading h3{font-size:var(--text-lg)}
+    .section-heading p{font-size:var(--text-sm);color:var(--muted);max-width:48ch}
+
+    .campaign-grid,.control-grid,.metric-grid,.history-grid,.template-grid{display:grid;gap:var(--space-4)}
+    .campaign-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .field{display:grid;gap:var(--space-2)}
+    .field label{
+      font-size:var(--text-xs);text-transform:uppercase;
+      letter-spacing:.12em;color:var(--gold-2)
+    }
+    .field input,.field select,.field textarea{
+      width:100%;background:rgba(255,255,255,.03);
+      border:1px solid var(--border);border-radius:var(--radius-md);
+      padding:.95rem 1rem;min-height:50px;outline:none;
+      transition:border-color var(--transition), box-shadow var(--transition), transform var(--transition)
+    }
+    .field textarea{min-height:124px;resize:vertical}
+    .field input:focus,.field select:focus,.field textarea:focus{
+      border-color:rgba(242,208,137,.46);
+      box-shadow:0 0 0 4px rgba(201,154,60,.10)
+    }
+    .chip-row{display:flex;gap:var(--space-2);flex-wrap:wrap}
+    .chip{
+      padding:.7rem .95rem;border-radius:var(--radius-full);
+      border:1px solid var(--border);background:rgba(255,255,255,.03);
+      font-size:var(--text-xs);transition:all var(--transition);min-height:40px
+    }
+    .chip.active,.chip:hover{
+      border-color:rgba(242,208,137,.34);
+      background:rgba(201,154,60,.1);color:var(--gold-2);transform:translateY(-1px)
+    }
+    .slider-row{display:grid;gap:var(--space-4)}
+    .slider-wrap{
+      display:grid;grid-template-columns:140px 1fr 52px;
+      gap:var(--space-3);align-items:center
+    }
+    .slider-wrap span{font-size:var(--text-sm);color:var(--muted)}
+    input[type="range"]{
+      appearance:none;height:8px;border-radius:999px;
+      background:linear-gradient(90deg, rgba(201,154,60,.22), rgba(242,208,137,.34));outline:none
+    }
+    input[type="range"]::-webkit-slider-thumb{
+      appearance:none;width:18px;height:18px;border-radius:50%;
+      background:linear-gradient(135deg, var(--gold), var(--gold-2));
+      box-shadow:0 0 0 4px rgba(201,154,60,.15)
+    }
+
+    .action-row{display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-5)}
+    .preview-shell{
+      border-radius:calc(var(--radius-xl) + 6px);
+      padding:var(--space-5);overflow:hidden
+    }
+    .whatsapp{
+      border-radius:1.65rem;overflow:hidden;
+      background:#0f1e19;border:1px solid rgba(255,255,255,.06);
+      box-shadow:var(--shadow-lg)
+    }
+    .wa-header{
+      display:flex;align-items:center;gap:var(--space-3);
+      padding:1rem 1rem;background:#111b21;
+      border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .avatar{
+      width:42px;height:42px;border-radius:50%;
+      background:linear-gradient(135deg, #c99a3c, #f2d089);
+      color:#16120c;display:grid;place-items:center;font-weight:700
+    }
+    .wa-header strong{display:block;font-size:.98rem}
+    .wa-header span{font-size:.76rem;color:#9eb2a8}
+    .wa-screen{
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,.03), transparent 18%),
+        linear-gradient(180deg, rgba(9,20,16,.95), rgba(11,27,21,.95)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.01) 0 2px, transparent 2px 12px);
+      min-height:520px;padding:var(--space-5);
+      display:flex;flex-direction:column;gap:var(--space-4)
+    }
+    .date-chip{
+      align-self:center;padding:.32rem .7rem;border-radius:var(--radius-full);
+      background:rgba(17,27,33,.85);font-size:.75rem;color:#c9d9d0
+    }
+    .bubble{
+      max-width:88%;padding:.95rem 1rem;border-radius:1.1rem;
+      position:relative;white-space:pre-wrap;font-size:.98rem;line-height:1.55;
+      box-shadow:0 14px 36px rgba(0,0,0,.18)
+    }
+    .bubble.received{
+      align-self:flex-start;background:#202c33;color:#e9f0ec;
+      border-top-left-radius:.35rem
+    }
+    .bubble.sent{
+      align-self:flex-end;background:#005c4b;color:#f6fbf9;
+      border-top-right-radius:.35rem
+    }
+    .bubble time{
+      display:block;text-align:right;font-size:.68rem;
+      color:rgba(255,255,255,.66);margin-top:var(--space-2)
+    }
+
+    .editable-preview{margin-top:var(--space-5);display:grid;gap:var(--space-3)}
+    .editable-preview textarea{
+      min-height:215px;border-radius:var(--radius-lg);
+      border:1px solid var(--border);background:rgba(255,255,255,.03);
+      padding:var(--space-4)
+    }
+
+    .footer-note{
+      padding:0 var(--space-6) var(--space-8);
+      color:var(--faint);font-size:var(--text-xs)
+    }
+    .floating-particle,.glow-ring{position:fixed;pointer-events:none;z-index:-1}
+    .floating-particle{
+      width:340px;height:340px;border-radius:50%;
+      filter:blur(80px);
+      background:radial-gradient(circle, rgba(201,154,60,.18), transparent 62%);
+      animation:drift 18s ease-in-out infinite;
+      opacity:0.9
+    }
+    .particle-1{top:6%;left:-6%}
+    .particle-2{right:-8%;top:32%;animation-delay:-5s}
+    .particle-3{left:32%;bottom:-8%;animation-delay:-11s}
+    .glow-ring{
+      inset:12% 20% auto 20%;height:180px;
+      border-radius:50%;
+      border:1px solid rgba(242,208,137,.12);
+      filter:blur(2px);opacity:.7
+    }
+    .hidden{display:none !important}
+    @keyframes drift{
+      0%,100%{transform:translate3d(0,0,0) scale(1)}
+      50%{transform:translate3d(20px,-24px,0) scale(1.08)}
+    }
+    @keyframes pulseGlow{
+      0%,100%{box-shadow:0 0 0 0 rgba(201,154,60,.22)}
+      50%{box-shadow:0 0 0 12px rgba(201,154,60,0)}
+    }
+    .live{animation:pulseGlow 2.6s infinite}
+
+    @media (max-width: 1180px){
+      .app-shell,.workspace{grid-template-columns:1fr}
+      .sidebar{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--border)}
+      .topbar{padding:var(--space-4)}
+      .hero{padding:var(--space-8) var(--space-4) var(--space-4)}
+      .workspace{padding:var(--space-4)}
+    }
+    @media (max-width: 720px){
+      .campaign-grid,.hero-grid{grid-template-columns:1fr}
+      .top-actions,.action-row,.chip-row{width:100%}
+      .top-actions > *,.action-row > *{flex:1}
+      .slider-wrap{grid-template-columns:1fr;gap:var(--space-2)}
+      .hero-panel,.panel,.preview-shell{padding:var(--space-5)}
+      .hero-panel h3{max-width:14ch;font-size:clamp(2rem,1.6rem + 2vw,3rem)}
+      .wa-screen{min-height:460px}
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <div class="floating-particle particle-1"></div>
+  <div class="floating-particle particle-2"></div>
+  <div class="floating-particle particle-3"></div>
+  <div class="glow-ring"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AKM logo">
+            <path d="M9 35L20 12L24 21L28 12L39 35" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15 26H33" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-copy">
+          <h1>AKM Studio</h1>
+          <p>Luxury WhatsApp Marketing OS</p>
+        </div>
+      </div>
+
+      <div class="pill live">AI sales engine online</div>
+
+      <nav class="nav">
+        <button class="active" data-nav="creator"><span class="nav-dot"></span>Campaign Creator</button>
+        <button data-nav="engine"><span class="nav-dot"></span>AI Message Engine</button>
+        <button data-nav="simulator"><span class="nav-dot"></span>WhatsApp Simulator</button>
+        <button data-nav="automation"><span class="nav-dot"></span>Operations</button>
+      </nav>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="title-group">
+          <h2>AI-powered WhatsApp Marketing Studio</h2>
+          <p>Create emotionally persuasive furniture campaigns that feel handcrafted by a luxury sales strategist, not a robot.</p>
+        </div>
+        <div class="top-actions">
+          <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">☾</button>
+          <button class="ghost-btn" id="copyBtn">Copy Message</button>
+          <button class="secondary-btn" id="rewriteBtn">AI Rewrite</button>
+          <button class="primary-btn" id="generateBtn">Generate High-Converting Message</button>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <section class="hero">
+          <div class="hero-panel">
+            <div class="eyebrow">Designed for premium furniture businesses</div>
+            <h3>Turn quiet browsers into emotionally ready showroom visitors.</h3>
+            <p>This studio blends luxury storytelling, urgency psychology, lifestyle aspiration, and trust-building to generate WhatsApp campaigns that feel elite, human, and conversion-driven for furniture showrooms.</p>
+            <div class="hero-grid">
+              <div class="mini-stat">
+                <strong>27%</strong>
+                <span>Predicted reply lift after emotional optimization</span>
+              </div>
+              <div class="mini-stat">
+                <strong>91/100</strong>
+                <span>Luxury resonance score for premium showroom tone</span>
+              </div>
+              <div class="mini-stat">
+                <strong>3 clicks</strong>
+                <span>Generate, refine, export, and share instantly</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace">
+          <div>
+            <section class="panel" id="creator">
+              <div class="section-heading">
+                <div>
+                  <h3>Campaign Creator</h3>
+                  <p>Shape the audience, emotion, urgency, luxury appeal, and product narrative before the AI crafts your message.</p>
+                </div>
+                <div class="pill">Adaptive prompt matrix</div>
+              </div>
+
+              <div class="campaign-grid">
+                <div class="field">
+                  <label for="campaignType">Campaign type</label>
+                  <select id="campaignType">
+                    <option>Festival Campaign</option>
+                    <option>Premium Collection Launch</option>
+                    <option>Flash Sale Campaign</option>
+                    <option>Combo Offer</option>
+                    <option>VIP Customer Offer</option>
+                    <option>Anniversary Campaign</option>
+                    <option>Interior Design Campaign</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="audience">Audience</label>
+                  <select id="audience">
+                    <option>Newly married couples</option>
+                    <option>Premium villa owners</option>
+                    <option>Middle-class families</option>
+                    <option>Luxury apartment buyers</option>
+                    <option>Office owners</option>
+                    <option>Hotel owners</option>
+                    <option>Interior designers</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="customerType">Customer type</label>
+                  <select id="customerType">
+                    <option>Warm leads</option>
+                    <option>Past showroom visitors</option>
+                    <option>VIP repeat buyers</option>
+                    <option>Cold prospects</option>
+                    <option>Interior consultant network</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="language">Language</label>
+                  <select id="language">
+                    <option>English</option>
+                    <option>Tamil + English</option>
+                    <option>Tamil</option>
+                    <option>Hindi</option>
+                    <option>Malayalam</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="product">Featured product / offer</label>
+                  <input id="product" value="Italian-finish luxury sofa collection with festive launch benefits" />
+                </div>
+                <div class="field">
+                  <label for="offer">Offer details</label>
+                  <input id="offer" value="Free designer consultation + limited launch pricing this weekend" />
+                </div>
+              </div>
+
+              <div class="field" style="margin-top: var(--space-5);">
+                <label for="customNote">Lifestyle angle / visual brief</label>
+                <textarea id="customNote">Highlight family comfort, elevated living room beauty, premium finish, elegant hosting moments, and the pride of owning a statement piece that transforms the home instantly.</textarea>
+              </div>
+
+              <div class="section-heading" style="margin-top: var(--space-6); margin-bottom: var(--space-4);">
+                <div>
+                  <h3>Writing style</h3>
+                  <p>Switch the emotional personality of the AI engine based on showroom strategy.</p>
+                </div>
+              </div>
+              <div class="chip-row" id="toneChips">
+                <button class="chip active" data-tone="luxury">Luxury</button>
+                <button class="chip" data-tone="elegant">Elegant</button>
+                <button class="chip" data-tone="modern">Modern</button>
+                <button class="chip" data-tone="emotional">Emotional</button>
+                <button class="chip" data-tone="aggressive sales">Aggressive sales</button>
+                <button class="chip" data-tone="premium minimal">Premium minimal</button>
+                <button class="chip" data-tone="family-friendly">Family-friendly</button>
+                <button class="chip" data-tone="royal">Royal tone</button>
+                <button class="chip" data-tone="festive">Festive tone</button>
+                <button class="chip" data-tone="elite showroom">Elite showroom tone</button>
+              </div>
+            </section>
+
+            <section class="panel" id="engine">
+              <div class="section-heading">
+                <div>
+                  <h3>Advanced AI controls</h3>
+                  <p>Fine-tune uniqueness, urgency, emotional strength, luxury intensity, and message length in real time.</p>
+                </div>
+                <div class="pill">Psychology controls</div>
+              </div>
+
+              <div class="slider-row">
+                <div class="slider-wrap"><span>Creativity</span><input type="range" id="creativity" min="40" max="100" value="82"><strong id="creativityVal">82</strong></div>
+                <div class="slider-wrap"><span>Urgency</span><input type="range" id="urgency" min="20" max="100" value="74"><strong id="urgencyVal">74</strong></div>
+                <div class="slider-wrap"><span>Emotional intensity</span><input type="range" id="emotion" min="20" max="100" value="88"><strong id="emotionVal">88</strong></div>
+                <div class="slider-wrap"><span>Luxury level</span><input type="range" id="luxury" min="20" max="100" value="91"><strong id="luxuryVal">91</strong></div>
+                <div class="slider-wrap"><span>Message length</span><input type="range" id="length" min="1" max="3" value="2"><strong id="lengthVal">M</strong></div>
+              </div>
+
+              <div class="control-grid" style="margin-top: var(--space-6); grid-template-columns: repeat(2, minmax(0, 1fr));">
+                <div class="field">
+                  <label for="personalName">Personalized customer name</label>
+                  <input id="personalName" placeholder="Example: Priya" />
+                </div>
+                <div class="field">
+                  <label for="city">Location / showroom pull</label>
+                  <input id="city" value="Visit our AKM Furnitures showroom this weekend" />
+                </div>
+                <div class="field">
+                  <label for="emojiMode">Emoji intelligence</label>
+                  <select id="emojiMode">
+                    <option>Premium balanced</option>
+                    <option>Minimal luxury</option>
+                    <option>Festive high-energy</option>
+                    <option>No emoji</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="formatStyle">Format style</label>
+                  <select id="formatStyle">
+                    <option>WhatsApp premium blocks</option>
+                    <option>Short elite pitch</option>
+                    <option>Storytelling persuasion</option>
+                    <option>Offer-first conversion</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="action-row">
+                <button class="secondary-btn" id="shortenBtn">Shorten</button>
+                <button class="secondary-btn" id="expandBtn">Expand</button>
+              </div>
+            </section>
+
+            <section class="panel" id="automation">
+              <div class="section-heading">
+                <div>
+                  <h3>Operations</h3>
+                  <p>Prepare showroom outreach workflows the way your team prefers, while AI takes care of message psychology.</p>
+                </div>
+                <div class="pill">Lightweight stack</div>
+              </div>
+              <!-- Bulk integrations and heavy UI intentionally removed as requested -->
+            </section>
+          </div>
+
+          <div>
+            <section class="preview-shell" id="simulator">
+              <div class="section-heading">
+                <div>
+                  <h3>Live WhatsApp simulator</h3>
+                  <p>Edit the message, watch the preview update instantly, and keep the layout close to a real WhatsApp chat experience.</p>
+                </div>
+                <div class="pill">Editable preview</div>
+              </div>
+
+              <div class="whatsapp" aria-label="WhatsApp preview conversation">
+                <div class="wa-header">
+                  <div class="avatar">A</div>
+                  <div>
+                    <strong>AKM Furnitures</strong>
+                    <span>online now</span>
+                  </div>
+                </div>
+                <div class="wa-screen">
+                  <div class="date-chip">Today</div>
+                  <div class="bubble received">
+                    Vanakkam 👋 We have prepared something beautiful for your dream space.
+                    <time>10:17 PM</time>
+                  </div>
+                  <div class="bubble sent" id="bubbleMessage"></div>
+                </div>
+              </div>
+
+              <div class="editable-preview">
+                <label class="field" for="messageEditor">
+                  <span style="font-size:var(--text-xs); text-transform:uppercase; letter-spacing:.12em; color:var(--gold-2);">Live editable message</span>
+                  <textarea id="messageEditor"></textarea>
+                </label>
+                <div class="action-row">
+                  <button class="ghost-btn" id="txtExportBtn">Export TXT</button>
+                  <button class="ghost-btn" id="pdfExportBtn">Export PDF</button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+
+      <p class="footer-note">AKM Furnitures luxury outreach stack · Phone: +91-9865672951 · Email: akm.furniture2022@gmail.com</p>
+    </div>
+  </div>
+
+  <script>
+    const phoneNumber = '919865672951';
+    const brandName = 'AKM Furnitures';
+    const contactLine = '\n\n📞 *AKM Furnitures*: +91-9865672951\n📧 akm.furniture2022@gmail.com';
+
+    const templates = {
+      hooks: {
+        luxury: [
+          'Some homes deserve a centrepiece that quietly announces success.',
+          'There is a rare difference between ordinary seating and a sofa that transforms the entire mood of a home.',
+          'A refined living room never begins with furniture alone; it begins with the feeling your space creates.'
+        ],
+        elegant: [
+          'A beautifully designed home deserves furniture with presence, grace, and comfort.',
+          'Elegance is often remembered in the details guests notice first.',
+          'The right piece can make your space feel calmer, richer, and more complete.'
+        ],
+        modern: [
+          'Your next living-room upgrade should feel sleek, smart, and visually unforgettable.',
+          'Today’s interiors reward furniture that looks premium without trying too hard.',
+          'Modern homes deserve furniture that feels fresh, clean, and instantly impressive.'
+        ],
+        emotional: [
+          'The most loved corners of a home are built around comfort, warmth, and togetherness.',
+          'Beautiful furniture is not just seen; it becomes part of family memories.',
+          'A welcoming home begins with the space where your loved ones relax together.'
+        ],
+        'aggressive sales': [
+          'This is the right moment to upgrade before the best designs are gone.',
+          'Our most attractive showroom offer is now live, and serious buyers are already locking their favorites.',
+          'If you have been waiting for the perfect furniture deal, this is your window.'
+        ],
+        'premium minimal': [
+          'Refined. Clean. Memorable. That is the mood this collection brings home.',
+          'Minimal luxury is about choosing fewer pieces with stronger presence.',
+          'Quiet sophistication often sells itself in a single glance.'
+        ],
+        'family-friendly': [
+          'Create a home where comfort feels immediate for every family member.',
+          'Practical comfort and beautiful design can absolutely live together.',
+          'A family living room should feel welcoming, durable, and proud to show off.'
+        ],
+        royal: [
+          'Some furniture carries a richness that makes the room feel regal from the first glance.',
+          'Bring home a collection with a royal presence and unmistakable sophistication.',
+          'There is a timeless grandeur in furniture designed to command attention gracefully.'
+        ],
+        festive: [
+          'This festive season is the perfect time to make your home feel brighter, warmer, and more premium.',
+          'Celebrate the season with furniture that makes every guest pause and admire.',
+          'Festivals feel even more special when your home looks celebration-ready.'
+        ],
+        'elite showroom': [
+          'An elite showroom experience begins with a collection curated for people who expect more.',
+          'We have arranged a private-level presentation of pieces chosen for discerning buyers.',
+          'Certain collections are created for customers who value finish, exclusivity, and statement appeal.'
+        ]
+      },
+      triggers: {
+        'Newly married couples': 'romantic beginnings, elegant hosting, and a home that feels truly yours',
+        'Premium villa owners': 'signature luxury, visual scale, and refined statement living',
+        'Middle-class families': 'value, pride, long-lasting comfort, and family togetherness',
+        'Luxury apartment buyers': 'modern interior beauty, premium finishes, and lifestyle aspiration',
+        'Office owners': 'client impression, productivity mood, and polished professional identity',
+        'Hotel owners': 'guest delight, upscale ambience, and premium seating appeal',
+        'Interior designers': 'finish credibility, concept harmony, and curated visual storytelling'
+      },
+      ctas: {
+        soft: [
+          'Reply *YES* to receive your personalized showroom recommendations.',
+          'Send us a quick reply and we will reserve the most suitable options for you.',
+          'Reply now and let us shortlist the finest pieces for your space.'
+        ],
+        direct: [
+          'Visit our showroom this weekend before the best picks are gone.',
+          'Reply now to lock your preferred design before this offer closes.',
+          'Message us today and secure your private viewing slot immediately.'
+        ]
+      },
+      urgency: {
+        low: [
+          'This collection is now available for a limited seasonal window.',
+          'Early visitors will enjoy the best range of choices and launch benefits.'
+        ],
+        mid: [
+          'Our special pricing is active only for a short time, and response is building fast.',
+          'A few standout models are already drawing attention, so early booking matters.'
+        ],
+        high: [
+          'This offer is live for a very limited window, and selected pieces may be booked quickly.',
+          'Demand is rising fast, and the most desirable finishes may not remain available for long.'
+        ]
+      },
+      emojis: {
+        'Premium balanced': ['✨','🛋️','🏡','💫','📍'],
+        'Minimal luxury': ['✨','🛋️','📍'],
+        'Festive high-energy': ['🎉','✨','🛋️','🔥','🏡','🎊','📍'],
+        'No emoji': []
+      }
+    };
+
+    const el = id => document.getElementById(id);
+    const state = {
+      tone: 'luxury',
+      variation: 0
+    };
+
+    function pick(arr, seedOffset = 0){
+      const index = (state.variation + seedOffset + Math.floor(Math.random() * arr.length)) % arr.length;
+      return arr[index];
+    }
+
+    function formatLength(text, lengthMode){
+      if(lengthMode === 1){
+        const parts = text.split('\n').filter(Boolean);
+        return parts.slice(0, 4).join('\n');
+      }
+      if(lengthMode === 3){
+        return text + '\n\nWe would be delighted to help you compare finishes, comfort levels, and space-fit options inside the showroom so your final choice feels effortless and truly premium.';
+      }
+      return text;
+    }
+
+    function createMessage(){
+      const campaignType = el('campaignType').value;
+      const audience = el('audience').value;
+      const customerType = el('customerType').value;
+      const language = el('language').value;
+      const product = el('product').value.trim();
+      const offer = el('offer').value.trim();
+      const customNote = el('customNote').value.trim();
+      const customerName = el('personalName').value.trim();
+      const city = el('city').value.trim();
+      const emojiMode = el('emojiMode').value;
+      const formatStyle = el('formatStyle').value;
+      const creativity = Number(el('creativity').value);
+      const urgency = Number(el('urgency').value);
+      const emotion = Number(el('emotion').value);
+      const luxury = Number(el('luxury').value);
+      const lengthMode = Number(el('length').value);
+      const emojiSet = templates.emojis[emojiMode] || [];
+      const em = (i, fallback='') => emojiSet[i] || fallback;
+      const greeting = customerName ? `Dear ${customerName},` : 'Vanakkam,';
+      const urgencyBand = urgency > 82 ? 'high' : urgency > 55 ? 'mid' : 'low';
+      const ctaBand = urgency > 70 ? 'direct' : 'soft';
+      const hook = pick(templates.hooks[state.tone] || templates.hooks.luxury, 1);
+      const trigger = templates.triggers[audience] || 'beautiful living';
+      const urgencyLine = pick(templates.urgency[urgencyBand], 2);
+      const cta = pick(templates.ctas[ctaBand], 3);
+      const styleLead = {
+        'WhatsApp premium blocks': `*${campaignType}*`,
+        'Short elite pitch': `*Private Offer from ${brandName}*`,
+        'Storytelling persuasion': `*Imagine your space feeling richer, warmer, and more admired...*`,
+        'Offer-first conversion': `*Limited Offer for ${audience}*`
+      }[formatStyle];
+
+      let body = `${greeting}\n\n${styleLead}\n\n${em(0)} *${hook}*\n\n${em(1)} We are unveiling *${product}* crafted for ${trigger}. This is ideal for ${customerType.toLowerCase()} who want more than furniture — they want a room that feels elevated, welcoming, and unforgettable.\n\n${em(2)} ${customNote}\n\n${em(3)} *Why customers are responding fast:*\n• premium finishing that instantly upgrades the room\n• comfort that feels inviting for family and guests\n• a look that creates pride, warmth, and lifestyle appeal\n• ${offer}\n\n${em(4)} ${urgencyLine}\n\n*${cta}*\n${city}.`;
+
+      if(language === 'Tamil + English'){
+        body = `${greeting}\n\n*${campaignType}*\n\n${em(0)} உங்கள் வீட்டை இன்னும் அழகாக, premium ஆக மாற்றும் ஒரு special collection இப்போது AKM Furnitures-ல் ready.\n\n${em(1)} *${product}* என்பது just furniture அல்ல — அது family comfort, stylish look, and proud living-room feel-ஐ கொடுக்க designed செய்யப்பட்டது.\n\n${em(2)} ${customNote}\n\n${em(3)} *Special benefit:* ${offer}.\n\n${em(4)} ${urgencyLine}\n\n*${cta}*\n${city}.`;
+      } else if(language === 'Tamil'){
+        body = `${greeting}\n\n*${campaignType}*\n\n${em(0)} உங்கள் வீட்டை பார்த்தவுடன் ரசிக்க வைக்கும் ஒரு அழகான premium furniture collection-ஐ AKM Furnitures இப்போது அறிமுகப்படுத்துகிறது.\n\n${em(1)} *${product}* உங்கள் living space-க்கு பெருமை, அழகு, மற்றும் family comfort-ஐ தரும் வகையில் தேர்ந்தெடுக்கப்பட்டுள்ளது.\n\n${em(2)} ${customNote}\n\n${em(3)} *சிறப்பு சலுகை:* ${offer}.\n\n${em(4)} ${urgencyLine}\n\n*${cta}*\n${city}.`;
+      }
+
+      if(creativity > 88){
+        body = body
+          .replace('instantly upgrades the room', 'creates a cinematic first impression the moment someone enters')
+          .replace('warmth, and lifestyle appeal', 'warmth, aspiration, and a magazine-worthy interior mood');
+      }
+      if(emotion > 85){
+        body += '\n\nA beautiful home is where loved ones relax, connect, celebrate, and feel truly proud to welcome others.';
+      }
+      if(luxury > 88){
+        body = body
+          .replace('premium', 'luxury-crafted')
+          .replace('special collection', 'exclusive luxury collection');
+      }
+
+      body = formatLength(body, lengthMode) + contactLine;
+      return body;
+    }
+
+    function renderMessage(){
+      const msg = createMessage();
+      el('messageEditor').value = msg;
+      el('bubbleMessage').innerHTML = `${msg.replace(/\n/g, '<br>')}<time>10:19 PM ✓✓</time>`;
+    }
+
+    function downloadFile(filename, type, content){
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    }
+
+    function generatePDF(){
+      const message = el('messageEditor').value;
+      const lines = message.split('\n');
+      const escaped = str => str.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
+      let y = 760;
+      let stream = 'BT\n/F1 12 Tf\n14 TL\n50 790 Td\n';
+      lines.forEach((line, i) => {
+        if(i === 0){ stream += `(${escaped(line)}) Tj\n`; }
+        else { y -= 14; stream += `0 -14 Td\n(${escaped(line || ' ')}) Tj\n`; }
+      });
+      stream += 'ET';
+      const objects = [];
+      objects.push('1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj');
+      objects.push('2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj');
+      objects.push('3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >> endobj');
+      objects.push(`4 0 obj << /Length ${stream.length} >> stream\n${stream}\nendstream endobj`);
+      objects.push('5 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj');
+      let pdf = '%PDF-1.4\n';
+      const offsets = [0];
+      objects.forEach(obj => { offsets.push(pdf.length); pdf += obj + '\n'; });
+      const xrefPos = pdf.length;
+      pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
+      for(let i = 1; i < offsets.length; i++){
+        pdf += `${String(offsets[i]).padStart(10, '0')} 00000 n \n`;
+      }
+      pdf += `trailer << /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefPos}\n%%EOF`;
+      downloadFile('akm-whatsapp-message.pdf', 'application/pdf', pdf);
+    }
+
+    document.querySelectorAll('#toneChips .chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#toneChips .chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        state.tone = chip.dataset.tone;
+        state.variation += 1;
+        renderMessage();
+      });
+    });
+
+    document.querySelectorAll('input[type="range"]').forEach(range => {
+      range.addEventListener('input', e => {
+        const target = e.target;
+        const out = el(`${target.id}Val`);
+        out.textContent = target.id === 'length' ? ['S','M','L'][Number(target.value)-1] : target.value;
+        renderMessage();
+      });
+    });
+
+    ['campaignType','audience','customerType','language','product','offer','customNote','personalName','city','emojiMode','formatStyle'].forEach(id => {
+      el(id).addEventListener('input', renderMessage);
+      el(id).addEventListener('change', renderMessage);
+    });
+
+    el('messageEditor').addEventListener('input', () => {
+      const msg = el('messageEditor').value;
+      el('bubbleMessage').innerHTML = `${msg.replace(/\n/g, '<br>')}<time>10:19 PM ✓✓</time>`;
+    });
+
+    el('generateBtn').addEventListener('click', () => { state.variation += 1; renderMessage(); });
+    el('rewriteBtn').addEventListener('click', () => { state.variation += 2; renderMessage(); });
+    el('copyBtn').addEventListener('click', async () => {
+      await navigator.clipboard.writeText(el('messageEditor').value);
+      el('copyBtn').textContent = 'Copied';
+      setTimeout(() => el('copyBtn').textContent = 'Copy Message', 1200);
+    });
+    el('txtExportBtn').addEventListener('click', () => downloadFile('akm-whatsapp-message.txt', 'text/plain;charset=utf-8', el('messageEditor').value));
+    el('pdfExportBtn').addEventListener('click', generatePDF);
+    el('shortenBtn').addEventListener('click', () => { el('length').value = 1; el('lengthVal').textContent = 'S'; renderMessage(); });
+    el('expandBtn').addEventListener('click', () => { el('length').value = 3; el('lengthVal').textContent = 'L'; renderMessage(); });
+
+    document.querySelectorAll('.nav button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = document.getElementById(btn.dataset.nav);
+        if(target){ target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    (function(){
+      const t = document.querySelector('[data-theme-toggle]');
+      const r = document.documentElement;
+      let d = r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      r.setAttribute('data-theme', d);
+      t.textContent = d === 'dark' ? '☀' : '☾';
+      t.addEventListener('click', ()=>{
+        d = d === 'dark' ? 'light' : 'dark';
+        r.setAttribute('data-theme', d);
+        t.textContent = d === 'dark' ? '☀' : '☾';
+      });
+    })();
+
+    renderMessage();
+  </script>
+</body>
+</html>
