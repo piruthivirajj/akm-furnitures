@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AKM AI Campaign Creator</title>
+  <meta name="description" content="Ultra-premium AI-powered WhatsApp campaign creator for AKM Furnitures with royal, bright, luxurious UI and live WhatsApp simulator." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=zodiak@400,500,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8f5ff;
+      --bg-strong: #f0ecff;
+      --surface: rgba(255, 255, 255, 0.72);
+      --surface-strong: rgba(255, 255, 255, 0.92);
+      --border-soft: rgba(88, 69, 120, 0.16);
+      --border-strong: rgba(88, 69, 120, 0.26);
+      --text-main: #17131f;
+      --text-muted: #7a6a96;
+      --text-soft: #a398c2;
+      --accent-gold: #c49a3c;
+      --accent-gold-soft: #f5e3b1;
+      --accent-royal: #3b2a88;
+      --accent-royal-soft: #6b5ad8;
+      --shadow-soft: 0 18px 60px rgba(53, 34, 112, 0.14);
+      --shadow-strong: 0 24px 80px rgba(53, 34, 112, 0.22);
+      --radius-lg: 22px;
+      --radius-xl: 28px;
+      --radius-pill: 9999px;
+      --font-display: 'Zodiak', Georgia, serif;
+      --font-body: 'General Sans', system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+      --transition: 220ms cubic-bezier(0.17, 0.89, 0.32, 1.28);
+      --text-xs: 0.78rem;
+      --text-sm: 0.9rem;
+      --text-base: 1rem;
+      --text-lg: 1.1rem;
+      --text-xl: clamp(1.8rem, 1.4rem + 1.4vw, 2.6rem);
+    }
+    [data-theme="dark"] {
+      --bg: #05030b;
+      --bg-strong: #09051a;
+      --surface: rgba(17, 13, 31, 0.78);
+      --surface-strong: rgba(18, 13, 42, 0.92);
+      --border-soft: rgba(165, 150, 210, 0.24);
+      --border-strong: rgba(225, 205, 255, 0.34);
+      --text-main: #faf6ff;
+      --text-muted: #b9a9d8;
+      --text-soft: #8d7ab9;
+      --accent-gold: #e0c16e;
+      --accent-gold-soft: #4b3b16;
+      --accent-royal: #9b86ff;
+      --accent-royal-soft: #6f5be0;
+      --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.55);
+      --shadow-strong: 0 32px 96px rgba(0, 0, 0, 0.72);
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+    body {
+      min-height: 100vh;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.5;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(234, 221, 255, 0.9), transparent 52%),
+        radial-gradient(circle at 90% 0%, rgba(255, 244, 209, 0.9), transparent 55%),
+        radial-gradient(circle at 50% 100%, rgba(190, 175, 255, 0.7), transparent 60%),
+        linear-gradient(180deg, var(--bg-strong), var(--bg));
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    img, svg { display: block; max-width: 100%; }
+    button { cursor: pointer; border: none; background: none; }
+    :focus-visible {
+      outline: 2px solid var(--accent-royal);
+      outline-offset: 3px;
+      border-radius: 999px;
+    }
+    .app-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 18px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 0% 0%, #fff7db 0%, transparent 52%),
+        radial-gradient(circle at 100% 0%, #f7e3ff 0%, transparent 50%),
+        linear-gradient(135deg, #f4e5ff, #fbeed6);
+      box-shadow:
+        0 10px 30px rgba(108, 79, 182, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+      display: grid;
+      place-items: center;
+    }
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .brand-text h1 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      letter-spacing: 0.04em;
+    }
+    .brand-text p {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .badge-live {
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-strong);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 244, 210, 0.85));
+      box-shadow: 0 10px 30px rgba(150, 119, 38, 0.18);
+      font-size: var(--text-xs);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-royal);
+    }
+    .badge-live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent-gold);
+      box-shadow: 0 0 0 6px rgba(196, 154, 60, 0.25);
+    }
+    .theme-toggle {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-soft);
+      background: radial-gradient(circle at 0% 0%, #ffffff, #f0e8ff);
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      box-shadow: 0 4px 16px rgba(77, 55, 140, 0.24);
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(77, 55, 140, 0.32);
+    }
+    .primary-btn {
+      border-radius: var(--radius-pill);
+      padding: 10px 20px;
+      border: 1px solid rgba(196, 154, 60, 0.65);
+      background:
+        radial-gradient(circle at 0% 0%, #fff7db, transparent 45%),
+        radial-gradient(circle at 100% 0%, #f6ebff, transparent 52%),
+        linear-gradient(135deg, #f6e3b7, #f2d47e);
+      color: #3b2810;
+      font-weight: 600;
+      font-size: var(--text-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 18px 48px rgba(173, 129, 37, 0.42);
+      transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+    }
+    .primary-btn:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 24px 64px rgba(173, 129, 37, 0.52);
+      filter: brightness(1.04);
+    }
+    /* WhatsApp send button style */
+    .wa-send-btn {
+      border-radius: var(--radius-pill);
+      padding: 10px 20px;
+      border: 1px solid rgba(37, 155, 99, 0.65);
+      background:
+        radial-gradient(circle at 0% 0%, #d4fce8, transparent 45%),
+        radial-gradient(circle at 100% 0%, #b8f5d4, transparent 52%),
+        linear-gradient(135deg, #25d366, #128c7e);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: var(--text-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 18px 48px rgba(37, 211, 102, 0.45);
+      transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+      letter-spacing: 0.02em;
+    }
+    .wa-send-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 24px 64px rgba(37, 211, 102, 0.58);
+      filter: brightness(1.06);
+    }
+    .wa-send-btn svg {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+    .subheader {
+      display: grid;
+      gap: 4px;
+      margin-top: 4px;
+    }
+    .subheader-title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+    }
+    .subheader-caption {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      max-width: 620px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 22px;
+      margin-top: 12px;
+    }
+    .card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(246, 240, 255, 0.96));
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 20px;
+      backdrop-filter: blur(22px);
+    }
+    [data-theme="dark"] .card {
+      background:
+        linear-gradient(145deg, rgba(16, 10, 33, 0.96), rgba(11, 7, 22, 0.98));
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .card-header h2 {
+      font-size: var(--text-lg);
+      font-family: var(--font-display);
+      letter-spacing: 0.04em;
+    }
+    .card-header p {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      max-width: 280px;
+    }
+    .pill-soft {
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(107, 90, 216, 0.22);
+      background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.9), rgba(239, 230, 255, 0.96));
+      font-size: var(--text-xs);
+      color: var(--accent-royal);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 16px;
+      margin-top: 4px;
+    }
+    .field {
+      display: grid;
+      gap: 4px;
+    }
+    .field-label {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-soft);
+    }
+    .field-input, .field-select, .field-textarea {
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      padding: 9px 11px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(245,241,255,0.98));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+      font-size: var(--text-sm);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition), background var(--transition);
+    }
+    [data-theme="dark"] .field-input,
+    [data-theme="dark"] .field-select,
+    [data-theme="dark"] .field-textarea {
+      background: radial-gradient(circle at 0% 0%, rgba(45, 31, 87, 0.96), rgba(16, 9, 38, 0.98));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+    .field-textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+    .field-input:focus, .field-select:focus, .field-textarea:focus {
+      border-color: var(--accent-royal-soft);
+      box-shadow:
+        0 0 0 2px rgba(155, 134, 255, 0.25),
+        0 12px 32px rgba(76, 55, 161, 0.25);
+      transform: translateY(-1px);
+    }
+    .field-inline {
+      display: flex;
+      gap: 8px;
+    }
+    .field-inline > * {
+      flex: 1;
+    }
+    .section-spacer {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(122, 106, 150, 0.25);
+    }
+    .section-title {
+      font-size: var(--text-sm);
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+    .full-width { grid-column: 1 / -1; }
+    .primary-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 12px;
+    }
+    .simulator-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(84, 71, 130, 0.3);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.95), rgba(248,245,255,0.96));
+      box-shadow: var(--shadow-strong);
+      padding: 14px;
+      backdrop-filter: blur(22px);
+      display: grid;
+      gap: 12px;
+    }
+    [data-theme="dark"] .simulator-card {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(57, 43, 125, 0.9), rgba(9, 6, 26, 0.98));
+    }
+    .wa-shell {
+      border-radius: 22px;
+      overflow: hidden;
+      background: #111b21;
+      color: #e9edef;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .wa-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: linear-gradient(90deg, #101920, #17252f);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .wa-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 0% 0%, #fff5d4, #f4e1ff);
+      display: grid;
+      place-items: center;
+      color: #3b2a10;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .wa-meta strong {
+      font-size: 0.9rem;
+    }
+    .wa-meta span {
+      display: block;
+      font-size: 0.7rem;
+      color: #9fa8b1;
+    }
+    .wa-screen {
+      min-height: 340px;
+      max-height: 440px;
+      padding: 10px 12px 14px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.08), transparent 50%),
+        radial-gradient(circle at 100% 0%, rgba(255,255,255,0.04), transparent 50%),
+        linear-gradient(180deg, #101920, #10171d);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+    }
+    .wa-date {
+      align-self: center;
+      background: rgba(31, 43, 55, 0.9);
+      color: #e2e6ea;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+    }
+    .wa-bubble {
+      max-width: 86%;
+      padding: 8px 9px 6px;
+      border-radius: 14px;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      position: relative;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    .wa-bubble.received {
+      align-self: flex-start;
+      background: #202c33;
+      border-bottom-left-radius: 4px;
+    }
+    .wa-bubble.sent {
+      align-self: flex-end;
+      background: #005c4b;
+      border-bottom-right-radius: 4px;
+    }
+    .wa-bubble time {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.7rem;
+      color: rgba(236, 239, 241, 0.78);
+      text-align: right;
+    }
+    .sim-edit {
+      display: grid;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .sim-edit label {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-soft);
+    }
+    .sim-edit textarea {
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      padding: 10px 11px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.98), rgba(245,241,255,0.98));
+      min-height: 130px;
+      resize: vertical;
+      font-size: var(--text-sm);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    [data-theme="dark"] .sim-edit textarea {
+      background: radial-gradient(circle at 0% 0%, rgba(45, 31, 87, 0.96), rgba(16, 9, 38, 0.98));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+    .sim-edit textarea:focus {
+      border-color: var(--accent-royal-soft);
+      box-shadow:
+        0 0 0 2px rgba(155, 134, 255, 0.25),
+        0 12px 32px rgba(76, 55, 161, 0.25);
+      transform: translateY(-1px);
+    }
+    .sim-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+    .ghost-btn {
+      border-radius: var(--radius-pill);
+      padding: 7px 13px;
+      font-size: var(--text-xs);
+      border: 1px solid rgba(104, 91, 164, 0.26);
+      background: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(242,238,255,0.96));
+      color: var(--accent-royal);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    [data-theme="dark"] .ghost-btn {
+      background: radial-gradient(circle at 0% 0%, rgba(34, 24, 78, 0.98), rgba(16, 12, 40, 0.98));
+    }
+    .ghost-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(83, 64, 160, 0.25);
+    }
+    .contact-block {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      border-radius: 16px;
+      padding: 8px 10px;
+      border: 1px dashed rgba(122,106,150,0.4);
+      background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(245,241,255,0.94));
+    }
+    [data-theme="dark"] .contact-block {
+      background: radial-gradient(circle at 0% 0%, rgba(35, 26, 82, 0.96), rgba(12, 8, 33, 0.97));
+    }
+    @media (max-width: 960px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (max-width: 720px) {
+      .app-shell {
+        padding: 18px 14px 32px;
+      }
+      .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .layout {
+        gap: 18px;
+      }
+      .card, .simulator-card {
+        padding: 14px 14px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Festival / Event datalist -->
+  <datalist id="festivalList">
+    <option value="Akshaya Tritiya">
+    <option value="Tamil New Year (Puthandu)">
+    <option value="Thai Pongal">
+    <option value="Aadi Perukku">
+    <option value="Dhanteras">
+    <option value="Vijayadashami (Dussehra)">
+    <option value="Deepavali">
+    <option value="Varalakshmi Vratham">
+    <option value="Karthigai Deepam">
+    <option value="Rama Navami">
+    <option value="Ugadi">
+    <option value="Makar Sankranti">
+    <option value="Basant Panchami">
+    <option value="Maha Shivaratri">
+    <option value="New Year Grand Sale">
+    <option value="Republic Day">
+    <option value="Independence Day">
+    <option value="Gandhi Jayanti">
+    <option value="Mother's Day">
+    <option value="Father's Day">
+    <option value="Christmas Luxury Carnival">
+    <option value="Ramzan Blessings Offer">
+    <option value="Bakrid Celebration Sale">
+    <option value="Wedding Season Royal Interiors">
+    <option value="Housewarming Prosperity Offer">
+    <option value="Anniversary Celebration Sale">
+    <option value="Summer Comfort Upgrade">
+    <option value="Monsoon Home Refresh">
+    <option value="Weekend Flash Deal">
+    <option value="Valarpirai Growth Prosperity Sale">
+    <option value="Purnima Wealth Expansion Day">
+    <option value="Dwitiya Smart Investment Day">
+    <option value="Panchami Growth Opportunity Sale">
+    <option value="Saptami Victory Purchase Day">
+    <option value="Ekadashi Divine Prosperity Sale">
+    <option value="Trayodashi Fortune Multiplication Event">
+    <option value="Pushya Nakshatra Investment Festival">
+    <option value="Revati Fortune Furniture Day">
+    <option value="Rohini Wealth Attraction Offer">
+    <option value="Mrigashira Premium Growth Sale">
+    <option value="Anuradha Success Prosperity Sale">
+    <option value="Hasta Smart Wealth Interiors">
+    <option value="Chitra Luxury Vision Sale">
+    <option value="Swati Business Growth Offer">
+    <option value="Punarvasu Renewal Prosperity Festival">
+    <option value="Subha Muhurtham Premium Sale">
+    <option value="Amrita Yoga Wealth Window">
+    <option value="Siddha Yoga Success Festival">
+    <option value="Nalla Neram Daily Prosperity Offer">
+    <option value="Abhijit Muhurta Power Purchase Event">
+    <option value="Guru Hora Wealth Expansion Sale">
+    <option value="Shukra Hora Luxury Asset Upgrade">
+    <option value="Budha Hora Trade Success Sale">
+    <option value="Salary Day Wealth Upgrade Festival">
+    <option value="Mid-Month Smart Prosperity Sale">
+    <option value="Month End Investment Clearance Sale">
+    <option value="Friday Lakshmi Prosperity Purchase Offer">
+    <option value="Sunday Family Wealth Upgrade">
+    <option value="Weekend Grand Prosperity Fest">
+    <option value="Festive Mega Combo Carnival">
+    <option value="Clearance Stock Luxury Rush">
+  </datalist>
+
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <div class="brand">
+          <div class="brand-mark">
+            <img src="akm-logo.png" alt="AKM Furnitures Logo">
+          </div>
+          <div class="brand-text">
+            <h1>AKM AI WEB</h1>
+            <p>YOUR TRUST,OUR QUALITY </p>
+          </div>
+        </div>
+        <div class="subheader">
+          <div class="subheader-title">AKM FURNITURES</div>
+          <p class="subheader-caption">
+            Generate festival-based offers and due payment reminders in seconds, then refine them inside a live WhatsApp simulator before sending.
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="badge-live">
+          <span class="badge-live-dot"></span>
+          AI Assistant Ready
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">☀</button>
+        <button class="primary-btn" id="generateBtn">
+          Generate Message
+          <span>↗</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- LEFT: Creator -->
+      <section class="card" aria-label="Campaign creator">
+        <div class="card-header">
+          <div>
+            <h2>Campaign Creator</h2>
+            <p>Select message type, festival/event, offer details, and timing. The AI will handle wording and psychology.</p>
+          </div>
+          <div class="pill-soft">
+            <span>✨</span> Focused, simple workflow
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <!-- Message type -->
+          <div class="field full-width">
+            <label class="field-label" for="messageType">Message Type</label>
+            <div class="field-inline">
+              <button class="ghost-btn" type="button" data-type="offer" id="btnTypeOffer">Offer Promotion</button>
+              <button class="ghost-btn" type="button" data-type="due" id="btnTypeDue">Due Payment Reminder</button>
+            </div>
+            <input type="hidden" id="messageType" value="offer">
+          </div>
+
+          <!-- Festival / Event -->
+          <div class="field">
+            <label class="field-label" for="eventType">Festival / Event</label>
+            <input id="eventType" class="field-input" list="festivalList" placeholder="Select or type festival / event" />
+          </div>
+
+          <!-- Auto offer name + campaign title -->
+          <div class="field">
+            <label class="field-label" for="autoOfferName">Auto Offer Name</label>
+            <input id="autoOfferName" class="field-input" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="campaignTitle">Campaign Title</label>
+            <input id="campaignTitle" class="field-input" />
+          </div>
+
+          <!-- Offer details -->
+          <div class="field">
+            <label class="field-label" for="discount">Discount %</label>
+            <input id="discount" class="field-input" placeholder="Eg: Up to 40% off" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="combo">Combo / Packages</label>
+            <input id="combo" class="field-input" placeholder="Eg: Sofa + Center table combo" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="cashback">Cashback / Payment</label>
+            <input id="cashback" class="field-input" placeholder="Eg: Easy EMI / cashback details" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="freeGifts">Free Gifts</label>
+            <input id="freeGifts" class="field-input" placeholder="Eg: Free pillows / decor items" />
+          </div>
+
+          <div class="field full-width">
+            <label class="field-label" for="productInfo">Product Info</label>
+            <textarea id="productInfo" class="field-textarea" placeholder="Eg: Luxury sofas, premium cots, dining sets, recliners, etc."></textarea>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="urgencyText">Urgency / Limited time</label>
+            <input id="urgencyText" class="field-input" placeholder="Eg: Offer valid only for this weekend" />
+          </div>
+
+          <!-- Due payment details -->
+          <div class="field">
+            <label class="field-label" for="dueAmount">Due amount</label>
+            <input id="dueAmount" class="field-input" placeholder="Eg: ₹25,000" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="dueDate">Due date</label>
+            <input id="dueDate" type="date" class="field-input" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="reminderNote">Reminder note</label>
+            <input id="reminderNote" class="field-input" placeholder="Eg: Kindly clear before delivery / within 2 days" />
+          </div>
+
+          <!-- Date & time section -->
+          <div class="field section-spacer full-width">
+            <div class="section-title">Date & Time</div>
+            <div class="field-inline">
+              <div class="field">
+                <label class="field-label" for="campaignDate">Campaign date</label>
+                <input id="campaignDate" type="date" class="field-input" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="campaignEnd">End date</label>
+                <input id="campaignEnd" type="date" class="field-input" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="sendTime">Send time</label>
+                <input id="sendTime" type="time" class="field-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="primary-row">
+          <button class="primary-btn" id="generateBtnBottom">
+            Generate Message
+            <span>↗</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- RIGHT: Simulator -->
+      <section class="simulator-card" aria-label="WhatsApp simulator">
+        <div class="card-header">
+          <div>
+            <h2>Live WhatsApp Simulator</h2>
+            <p>Preview, edit, and perfect the message exactly as it appears to your customer.</p>
+          </div>
+        </div>
+
+        <div class="wa-shell">
+          <div class="wa-header">
+            <div class="wa-avatar">AK</div>
+            <div class="wa-meta">
+              <strong>AKM Furnitures</strong>
+              <span>online · WhatsApp Business</span>
+            </div>
+          </div>
+          <div class="wa-screen" id="waScreen">
+            <div class="wa-date">Today</div>
+            <div class="wa-bubble received">
+              Vanakkam 👋 Welcome to AKM Furnitures. We have crafted a special message for you.
+              <time>10:14 AM</time>
+            </div>
+            <div class="wa-bubble sent" id="waBubble"></div>
+          </div>
+        </div>
+
+        <div class="sim-edit">
+          <label for="messageEditor">Editable message</label>
+          <textarea id="messageEditor"></textarea>
+        </div>
+
+        <div class="sim-actions">
+          <button class="ghost-btn" id="copyBtn">Copy</button>
+          <button class="ghost-btn" id="txtExportBtn">Export TXT</button>
+          <button class="ghost-btn" id="pdfExportBtn">Export PDF</button>
+          <button class="wa-send-btn" id="waShareBtn">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Send via WhatsApp
+          </button>
+        </div>
+
+        <div class="contact-block">
+━━━━━━━━━━━━━━
+🏠 AKM Furnitures  
+📞 +91-9865672951  
+📧 akm.furniture2022@gmail.com  
+🌐 https://www.google.com/search?q=akm+furniture  
+━━━━━━━━━━━━━━
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const brandSignature = `━━━━━━━━━━━━━━
+🏠 AKM Furnitures
+📞 +91-9865672951
+📧 akm.furniture2022@gmail.com
+🌐 https://www.google.com/search?q=akm+furniture
+━━━━━━━━━━━━━━`;
+
+    const eventPresets = {
+      "Akshaya Tritiya": { offerName: "Akshaya Tritiya Wealth Upgrade Sale", title: "Prosperity-focused furniture offers for Akshaya Tritiya" },
+      "Tamil New Year (Puthandu)": { offerName: "Tamil New Year Royal Home Upgrade", title: "Begin this new year with a royal home transformation" },
+      "Thai Pongal": { offerName: "Thai Pongal Mega Furniture Festival", title: "Celebrate Thai Pongal with auspicious home upgrades" },
+      "Aadi Perukku": { offerName: "Aadi Perukku Prosperity Furniture Fest", title: "Stability and comfort offers for your home this Aadi Perukku" },
+      "Dhanteras": { offerName: "Dhanteras Wealth & Comfort Sale", title: "Invest in long-lasting furniture this Dhanteras" },
+      "Vijayadashami (Dussehra)": { offerName: "Vijayadashami Victory Home Upgrade", title: "Celebrate victory with a refreshed, premium home" },
+      "Deepavali": { offerName: "Deepavali Luxury Festival Savings", title: "Light up your home with premium furniture for Deepavali" },
+      "Varalakshmi Vratham": { offerName: "Varalakshmi Prosperity Furniture Offer", title: "Invite Lakshmi into a beautifully furnished home" },
+      "Karthigai Deepam": { offerName: "Karthigai Deepam Illumination Sale", title: "Brighten every room with elegant furniture" },
+      "Rama Navami": { offerName: "Rama Navami Graceful Home Offer", title: "Traditional and modern furniture for a divine space" },
+      "Ugadi": { offerName: "Ugadi New Beginnings Sale", title: "Start fresh with upgraded interiors this Ugadi" },
+      "Makar Sankranti": { offerName: "Makar Sankranti Harvest Home Upgrade", title: "Celebrate harvest with warm, welcoming furniture" },
+      "Basant Panchami": { offerName: "Basant Panchami Bright Home Offer", title: "Fresh and vibrant furniture to welcome spring" },
+      "Maha Shivaratri": { offerName: "Maha Shivaratri Calm Comfort Sale", title: "Peaceful, sturdy furniture for serene living" },
+      "New Year Grand Sale": { offerName: "New Year Grand Furniture Sale", title: "Start the new year with a fresh, elegant home" },
+      "Republic Day": { offerName: "Republic Day Home Pride Offer", title: "Upgrade your interiors with proud, durable designs this Republic Day" },
+      "Independence Day": { offerName: "Independence Day Freedom Comfort Sale", title: "Celebrate independence with free, open, and comfortable living spaces" },
+      "Gandhi Jayanti": { offerName: "Gandhi Jayanti Simple Living Offer", title: "Minimal, comfortable furniture inspired by simple living" },
+      "Mother's Day": { offerName: "Mothers Day Comfort & Care Offer", title: "Gift your mother a more comfortable and beautiful home" },
+      "Father's Day": { offerName: "Fathers Day Relaxation Upgrade", title: "Give dad a premium place to rest and recharge" },
+      "Christmas Luxury Carnival": { offerName: "Christmas Luxury Furniture Carnival", title: "Warm, cozy furniture for a magical Christmas" },
+      "Ramzan Blessings Offer": { offerName: "Ramzan Blessings Comfort Offer", title: "Peaceful, comfortable furniture for Ramzan gatherings" },
+      "Bakrid Celebration Sale": { offerName: "Bakrid Celebration Furniture Sale", title: "Celebrate Bakrid with a welcoming home setup" },
+      "Wedding Season Royal Interiors": { offerName: "Wedding Season Royal Interiors Offer", title: "Create royal spaces for the new couple" },
+      "Housewarming Prosperity Offer": { offerName: "Housewarming Prosperity Furniture Offer", title: "Perfect furniture picks for new homes" },
+      "Anniversary Celebration Sale": { offerName: "Anniversary Celebration Home Upgrade", title: "Mark your anniversary with a meaningful home upgrade" },
+      "Summer Comfort Upgrade": { offerName: "Summer Comfort Upgrade Offer", title: "Stay cool and relaxed with summer-friendly furniture" },
+      "Monsoon Home Refresh": { offerName: "Monsoon Home Refresh Sale", title: "Keep your home cozy and dry this monsoon" },
+      "Weekend Flash Deal": { offerName: "Weekend Flash Furniture Deal", title: "Fast, limited-period deals for this weekend" },
+      "Valarpirai Growth Prosperity Sale": { offerName: "Valarpirai Growth Prosperity Sale", title: "Choose furniture that supports steady growth" },
+      "Purnima Wealth Expansion Day": { offerName: "Purnima Wealth Expansion Offer", title: "Full-moon blessings with smart furniture investments" },
+      "Dwitiya Smart Investment Day": { offerName: "Dwitiya Smart Investment Sale", title: "Make wise furniture upgrades for long-term comfort" },
+      "Panchami Growth Opportunity Sale": { offerName: "Panchami Growth Opportunity Sale", title: "Upgrade your home with growth-focused offers" },
+      "Saptami Victory Purchase Day": { offerName: "Saptami Victory Purchase Offer", title: "Celebrate success with premium furniture" },
+      "Ekadashi Divine Prosperity Sale": { offerName: "Ekadashi Divine Prosperity Sale", title: "Sacred day offers for peaceful, durable furniture" },
+      "Trayodashi Fortune Multiplication Event": { offerName: "Trayodashi Fortune Furniture Fest", title: "Multiply comfort and fortune with right choices" },
+      "Pushya Nakshatra Investment Festival": { offerName: "Pushya Nakshatra Investment Festival", title: "Auspicious time for stable furniture investments" },
+      "Revati Fortune Furniture Day": { offerName: "Revati Fortune Furniture Offer", title: "Create a gentle, comfortable home environment" },
+      "Rohini Wealth Attraction Offer": { offerName: "Rohini Wealth Attraction Offer", title: "Attract prosperity with luxurious furniture" },
+      "Mrigashira Premium Growth Sale": { offerName: "Mrigashira Premium Growth Sale", title: "Refined designs for evolving homes" },
+      "Anuradha Success Prosperity Sale": { offerName: "Anuradha Success Prosperity Sale", title: "Support success with elegant interiors" },
+      "Hasta Smart Wealth Interiors": { offerName: "Hasta Smart Wealth Interiors Offer", title: "Practical, stylish furniture for everyday use" },
+      "Chitra Luxury Vision Sale": { offerName: "Chitra Luxury Vision Sale", title: "Turn your dream home vision into reality" },
+      "Swati Business Growth Offer": { offerName: "Swati Business Growth Furniture Offer", title: "Upgrade office and home for growth energy" },
+      "Punarvasu Renewal Prosperity Festival": { offerName: "Punarvasu Renewal Prosperity Festival", title: "Renew every room with balanced furniture choices" },
+      "Subha Muhurtham Premium Sale": { offerName: "Subha Muhurtham Premium Sale", title: "Auspicious time for long-term furniture investments" },
+      "Amrita Yoga Wealth Window": { offerName: "Amrita Yoga Wealth Window Offer", title: "Capture wealth energy with premium furniture" },
+      "Siddha Yoga Success Festival": { offerName: "Siddha Yoga Success Festival", title: "Success-focused upgrades for every room" },
+      "Nalla Neram Daily Prosperity Offer": { offerName: "Nalla Neram Prosperity Furniture Offer", title: "Seize the good time with comfort-driven deals" },
+      "Abhijit Muhurta Power Purchase Event": { offerName: "Abhijit Muhurta Power Purchase Event", title: "Powerful window to invest in quality furniture" },
+      "Guru Hora Wealth Expansion Sale": { offerName: "Guru Hora Wealth Expansion Sale", title: "Guru's grace for long-lasting furniture choices" },
+      "Shukra Hora Luxury Asset Upgrade": { offerName: "Shukra Hora Luxury Asset Upgrade", title: "Venus-blessed luxury furniture collection" },
+      "Budha Hora Trade Success Sale": { offerName: "Budha Hora Trade Success Sale", title: "Smart, efficient furniture deals for success" },
+      "Salary Day Wealth Upgrade Festival": { offerName: "Salary Day Wealth Upgrade Festival", title: "Transform your home right after salary credit" },
+      "Mid-Month Smart Prosperity Sale": { offerName: "Mid-Month Smart Prosperity Sale", title: "Balanced mid-month deals for smart buyers" },
+      "Month End Investment Clearance Sale": { offerName: "Month End Investment Clearance Sale", title: "Clearance deals to upgrade your furniture smartly" },
+      "Friday Lakshmi Prosperity Purchase Offer": { offerName: "Friday Lakshmi Prosperity Purchase Offer", title: "Invite Lakshmi with well-chosen furniture" },
+      "Sunday Family Wealth Upgrade": { offerName: "Sunday Family Wealth Upgrade", title: "Weekend time to invest in family comfort" },
+      "Weekend Grand Prosperity Fest": { offerName: "Weekend Grand Prosperity Fest", title: "High-energy weekend offers for your home" },
+      "Festive Mega Combo Carnival": { offerName: "Festive Mega Combo Carnival", title: "Mega combo deals across categories" },
+      "Clearance Stock Luxury Rush": { offerName: "Clearance Stock Luxury Rush", title: "Grab premium pieces at clearance value" }
+    };
+
+    const el = id => document.getElementById(id);
+
+    function setMessageType(type) {
+      el('messageType').value = type;
+      const offerBtn = el('btnTypeOffer');
+      const dueBtn = el('btnTypeDue');
+      if (type === 'offer') {
+        offerBtn.classList.add('primary-btn');
+        offerBtn.classList.remove('ghost-btn');
+        offerBtn.textContent = 'Offer Promotion';
+        dueBtn.classList.remove('primary-btn');
+        dueBtn.classList.add('ghost-btn');
+        dueBtn.textContent = 'Due Payment Reminder';
+      } else {
+        dueBtn.classList.add('primary-btn');
+        dueBtn.classList.remove('ghost-btn');
+        dueBtn.textContent = 'Due Payment Reminder';
+        offerBtn.classList.remove('primary-btn');
+        offerBtn.classList.add('ghost-btn');
+        offerBtn.textContent = 'Offer Promotion';
+      }
+    }
+
+    function getPresetForEvent() {
+      const eventName = (el('eventType').value || '').trim();
+      if (!eventName) return null;
+      const preset = eventPresets[eventName];
+      if (preset) return preset;
+      return {
+        offerName: `${eventName} Furniture Offer`,
+        title: `Premium furniture offers for ${eventName}`
+      };
+    }
+
+    function updatePresetFromEvent() {
+      const preset = getPresetForEvent();
+      if (!preset) {
+        // If event is cleared, clear both dependent fields too
+        el('autoOfferName').value = '';
+        el('campaignTitle').value = '';
+        return;
+      }
+      // Always sync — overwrite so event and offer name stay perfectly coordinated
+      el('autoOfferName').value = preset.offerName;
+      el('campaignTitle').value = preset.title;
+    }
+
+    function formatDateForMessage(dateStr) {
+      if (!dateStr) return '';
+      const d = new Date(dateStr);
+      if (Number.isNaN(d.getTime())) return '';
+      const options = { day: 'numeric', month: 'short' };
+      return d.toLocaleDateString('en-IN', options);
+    }
+
+    function createOfferMessage() {
+      const eventName = (el('eventType').value || '').trim();
+      const preset = getPresetForEvent() || {
+        offerName: 'Special Home Upgrade Offer',
+        title: 'Upgrade your home with premium furniture'
+      };
+
+      const offerName = el('autoOfferName').value || preset.offerName;
+      const campaignTitle = el('campaignTitle').value || preset.title;
+      const discount = el('discount').value;
+      const combo = el('combo').value;
+      const cashback = el('cashback').value;
+      const freeGifts = el('freeGifts').value;
+      const productInfo = el('productInfo').value;
+      const urgencyText = el('urgencyText').value || 'Offer valid for a limited time only.';
+
+      const startDate = formatDateForMessage(el('campaignDate').value);
+      const endDate = formatDateForMessage(el('campaignEnd').value);
+      const sendTime = el('sendTime').value;
+
+      const timingLine = (startDate || endDate || sendTime)
+        ? `Offer window: ${startDate || ''}${startDate && endDate ? ' to ' : ''}${!startDate && endDate ? endDate : ''}${sendTime ? ` · Recommended send time: ${sendTime}` : ''}`
+        : '';
+
+      const bullets = [];
+      if (discount) bullets.push(`• Special savings: ${discount}`);
+      if (combo) bullets.push(`• Combo value: ${combo}`);
+      if (cashback) bullets.push(`• Payment comfort: ${cashback}`);
+      if (freeGifts) bullets.push(`• Extra delight: ${freeGifts}`);
+      if (productInfo) bullets.push(`• Highlights: ${productInfo}`);
+
+      const bulletBlock = bullets.length
+        ? `\n✨ What you get:\n${bullets.join('\n')}`
+        : '';
+
+      const urgencyLine = `⏰ ${urgencyText}`;
+
+      const festivalLine = eventName
+        ? `This offer is specially designed for *${eventName}* so that your home feels more meaningful and memorable for this occasion.\n`
+        : '';
+
+      const msg =
+`Vanakkam 🙏
+
+*${offerName}*
+
+${campaignTitle}
+
+${festivalLine}We have curated premium furniture pieces to make your home look more royal, comfortable, and welcoming. This is a good time to upgrade your living room, bedroom, and dining space with elegant designs.
+
+${bulletBlock}
+
+${timingLine ? timingLine + '\n\n' : ''}${urgencyLine}
+
+If you are interested, just reply to this message or visit our showroom and we will personally help you choose the best options.
+
+${brandSignature}`;
+
+      return msg;
+    }
+
+    function createDueMessage() {
+      const dueAmount = el('dueAmount').value || 'your pending amount';
+      const dueDate = formatDateForMessage(el('dueDate').value);
+      const reminderNote = el('reminderNote').value || 'Kindly complete the payment at your convenience.';
+
+      const sendTime = el('sendTime').value;
+      const timingLine = sendTime ? `Suggested reminder time: ${sendTime}` : '';
+
+      const msg =
+`Vanakkam 🙏
+
+This is a gentle reminder from AKM Furnitures regarding your due payment of *${dueAmount}*.
+
+${dueDate ? `Due date: ${dueDate}\n\n` : ''}${reminderNote}
+
+If you have already made the payment, please ignore this message. If not, you may clear the amount through cash, UPI, or bank transfer, or you can visit our showroom.
+
+${timingLine ? timingLine + '\n\n' : ''}Thank you for trusting AKM Furnitures. We truly appreciate your support.
+
+${brandSignature}`;
+
+      return msg;
+    }
+
+    function generateMessage() {
+      const type = el('messageType').value;
+      const msg = type === 'due' ? createDueMessage() : createOfferMessage();
+      el('messageEditor').value = msg;
+      updateBubbleFromEditor();
+    }
+
+    function updateBubbleFromEditor() {
+      const msg = el('messageEditor').value || '';
+      el('waBubble').innerHTML = msg.replace(/\n/g, '<br>') + '<time>10:18 AM  ✓✓</time>';
+    }
+
+    function downloadFile(filename, mime, content) {
+      const blob = new Blob([content], { type: mime });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function createSimplePDF(text) {
+      const lines = text.split('\n');
+      const escapePDF = s => s.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
+      let stream = 'BT\n/F1 11 Tf\n14 TL\n50 800 Td\n';
+      lines.forEach((line, idx) => {
+        if (idx === 0) {
+          stream += `(${escapePDF(line)}) Tj\n`;
+        } else {
+          stream += `0 -14 Td\n(${escapePDF(line || ' ')}) Tj\n`;
+        }
+      });
+      stream += 'ET';
+
+      const objects = [];
+      objects.push('1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj');
+      objects.push('2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj');
+      objects.push('3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >> endobj');
+      objects.push(`4 0 obj << /Length ${stream.length} >> stream\n${stream}\nendstream endobj`);
+      objects.push('5 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj');
+
+      let pdf = '%PDF-1.4\n';
+      const offsets = [0];
+      objects.forEach(o => { offsets.push(pdf.length); pdf += o + '\n'; });
+
+      const xrefPos = pdf.length;
+      pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
+      for (let i = 1; i < offsets.length; i++) {
+        pdf += `${String(offsets[i]).padStart(10, '0')} 00000 n \n`;
+      }
+      pdf += `trailer << /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefPos}\n%%EOF`;
+
+      return pdf;
+    }
+
+    // Theme toggle
+    (function initTheme() {
+      const toggle = el('themeToggle');
+      let current = document.documentElement.getAttribute('data-theme') || 'light';
+      const apply = () => {
+        document.documentElement.setAttribute('data-theme', current);
+        toggle.textContent = current === 'light' ? '☾' : '☀';
+      };
+      apply();
+      toggle.addEventListener('click', () => {
+        current = current === 'light' ? 'dark' : 'light';
+        apply();
+      });
+    })();
+
+    // Bind events
+    el('btnTypeOffer').addEventListener('click', () => setMessageType('offer'));
+    el('btnTypeDue').addEventListener('click', () => setMessageType('due'));
+
+    el('eventType').addEventListener('input', updatePresetFromEvent);
+    el('eventType').addEventListener('change', updatePresetFromEvent);
+
+    el('generateBtn').addEventListener('click', generateMessage);
+    el('generateBtnBottom').addEventListener('click', generateMessage);
+
+    el('messageEditor').addEventListener('input', updateBubbleFromEditor);
+
+    el('copyBtn').addEventListener('click', async () => {
+      const text = el('messageEditor').value;
+      try {
+        await navigator.clipboard.writeText(text);
+        const btn = el('copyBtn');
+        const old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => { btn.textContent = old; }, 1200);
+      } catch (e) {
+        alert('Copy not supported in this browser.');
+      }
+    });
+
+    el('txtExportBtn').addEventListener('click', () => {
+      const txt = el('messageEditor').value;
+      downloadFile('akm-whatsapp-message.txt', 'text/plain;charset=utf-8', txt);
+    });
+
+    el('pdfExportBtn').addEventListener('click', () => {
+      const txt = el('messageEditor').value;
+      const pdf = createSimplePDF(txt);
+      downloadFile('akm-whatsapp-message.pdf', 'application/pdf', pdf);
+    });
+
+    // Send via WhatsApp button
+    el('waShareBtn').addEventListener('click', () => {
+      const text = el('messageEditor').value.trim();
+      if (!text) {
+        alert('Please generate a message first before sending via WhatsApp.');
+        return;
+      }
+      // wa.me/send opens WhatsApp with the message pre-filled.
+      // The user can then select multiple contacts or groups inside WhatsApp and forward/send.
+      const encoded = encodeURIComponent(text);
+      const url = `https://wa.me/?text=${encoded}`;
+      window.open(url, '_blank');
+    });
+
+    // Initial state
+    setMessageType('offer');
+    updatePresetFromEvent();
+    generateMessage();
+  </script>
+</body>
+</html>
